@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import joblib  # ✅ Use joblib instead of pickle
 import os
+import joblib
+joblib.dump(pipe, 'pipe.pkl')
+
 
 # Title
 st.title('IPL Win Predictor')
