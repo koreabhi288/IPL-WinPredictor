@@ -3,30 +3,34 @@ import pickle
 import pandas as pd
 import os
 
+teams = [
+    'Sunrisers Hyderabad',
+    'Mumbai Indians',
+    'Royal Challengers Bangalore',
+    'Kolkata Knight Riders',
+    'Kings XI Punjab',
+    'Chennai Super Kings',
+    'Rajasthan Royals',
+    'Delhi Capitals'
+]
+
+cities = [
+    'Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
+    'Chandigarh', 'Jaipur', 'Chennai', 'Cape Town', 'Port Elizabeth',
+    'Durban', 'Centurion', 'East London', 'Johannesburg', 'Kimberley',
+    'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
+    'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi',
+    'Sharjah', 'Mohali', 'Bengaluru'
+]
+
 # Check if pickle file exists
 if not os.path.exists('pipe.pkl'):
     st.error("The pipe.pkl file is not found. Please ensure it's uploaded to your repository.")
     st.stop()
 
-teams = ['Sunrisers Hyderabad',
- 'Mumbai Indians',
- 'Royal Challengers Bangalore',
- 'Kolkata Knight Riders',
- 'Kings XI Punjab',
- 'Chennai Super Kings',
- 'Rajasthan Royals',
- 'Delhi Capitals']
-
-cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
-       'Chandigarh', 'Jaipur', 'Chennai', 'Cape Town', 'Port Elizabeth',
-       'Durban', 'Centurion', 'East London', 'Johannesburg', 'Kimberley',
-       'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
-       'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi',
-       'Sharjah', 'Mohali', 'Bengaluru']
-
 # Load the model
 try:
-    pipe = pickle.load(open('pipe.pkl','rb'))
+    pipe = pickle.load(open('pipe.pkl', 'rb'))
 except Exception as e:
     st.error(f"Error loading model: {str(e)}")
     st.stop()
