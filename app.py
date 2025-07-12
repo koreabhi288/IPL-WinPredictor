@@ -30,10 +30,18 @@ if not os.path.exists('pipe.pkl'):
 
 # Load the model
 try:
+    # Try loading with pickle first
     pipe = pickle.load(open('pipe.pkl', 'rb'))
-except Exception as e:
-    st.error(f"Error loading model: {str(e)}")
-    st.stop()
+except Exception as pickle_error:
+    try:
+        # If pickle fails, try with joblib
+        import joblib
+        pipe = joblib.load('pipe.pkl')
+    except Exception as joblib_error:
+        st.error(f"Error loading model with pickle: {str(pickle_error)}")
+        st.error(f"Error loading model with joblib: {str(joblib_error)}")
+        st.error("Please ensure the model was saved with the same scikit-learn version or recreate the model.")
+        st.stop()
 
 st.title('IPL Win Predictor')
 
